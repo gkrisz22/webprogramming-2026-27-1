@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Attendance</h1>
+
+  <form id="add-form">
+    <input id="neptun" placeholder="Neptun code">
+    <input id="name" placeholder="Name">
+    <button>Add</button>
+  </form>
+
+  <p id="summary">2 of 5 present</p>
+  <button id="all-present" type="button">Everyone is present</button>
+
+  <ul id="student-list">
+    <li data-neptun="ABCDEF">
+      <label><input type="checkbox"> Alice (ABCDEF)</label>
+    </li>
+    <li data-neptun="G7H2KL">
+      <label><input type="checkbox"> Bob (G7H2KL)</label>
+    </li>
+    <li data-neptun="M9N3PQ" class="present">
+      <label><input type="checkbox" checked> Charlie (M9N3PQ)</label>
+    </li>
+    <li data-neptun="R4S5TU">
+      <label><input type="checkbox"> David (R4S5TU)</label>
+    </li>
+    <li data-neptun="V6W7XY" class="present">
+      <label><input type="checkbox" checked> Eve (V6W7XY)</label>
+    </li>
+  </ul>
+</body>
+</html>

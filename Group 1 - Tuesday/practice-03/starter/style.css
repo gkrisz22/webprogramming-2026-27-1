@@ -1,0 +1,30 @@
+body {
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: sans-serif;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+}
+
+input,
+button {
+  padding: 6px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  margin: 6px 0;
+  padding: 8px;
+  background: #eee;
+}
+
+li.present {
+  background: #cfc;
+}
