@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Art Editor — static example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Pixel Art Editor</h1>
+  <p>Static example: a 5×5 drawing after 1 minute and 23 seconds.</p>
+
+  <main id="app">
+    <section id="editor-section" aria-labelledby="editor-heading">
+      <h2 id="editor-heading">Canvas</h2>
+      <div id="grid-controls">
+        <label for="grid-width">Width</label>
+        <input id="grid-width" type="number" min="1" max="30" value="5">
+        <label for="grid-height">Height</label>
+        <input id="grid-height" type="number" min="1" max="30" value="5">
+        <button id="generate-btn" type="button">Generate grid</button>
+      </div>
+      <div id="grid-container">
+        <table class="edit"><tbody>
+          <tr><td data-row="0" data-col="0" style="background-color: #ffffff"></td><td data-row="0" data-col="1" style="background-color: #ff0000"></td><td data-row="0" data-col="2" style="background-color: #ff0000"></td><td data-row="0" data-col="3" style="background-color: #ff0000"></td><td data-row="0" data-col="4" style="background-color: #ffffff"></td></tr>
+          <tr><td data-row="1" data-col="0" style="background-color: #ff0000"></td><td data-row="1" data-col="1" style="background-color: #ffffff"></td><td data-row="1" data-col="2" style="background-color: #ffffff"></td><td data-row="1" data-col="3" style="background-color: #ffffff"></td><td data-row="1" data-col="4" style="background-color: #ff0000"></td></tr>
+          <tr><td data-row="2" data-col="0" style="background-color: #ff0000"></td><td data-row="2" data-col="1" style="background-color: #ffffff"></td><td data-row="2" data-col="2" style="background-color: #ffffff"></td><td data-row="2" data-col="3" style="background-color: #ffffff"></td><td data-row="2" data-col="4" style="background-color: #ff0000"></td></tr>
+          <tr><td data-row="3" data-col="0" style="background-color: #ffffff"></td><td data-row="3" data-col="1" style="background-color: #ff0000"></td><td data-row="3" data-col="2" style="background-color: #ffffff"></td><td data-row="3" data-col="3" style="background-color: #ff0000"></td><td data-row="3" data-col="4" style="background-color: #ffffff"></td></tr>
+          <tr><td data-row="4" data-col="0" style="background-color: #ffffff"></td><td data-row="4" data-col="1" style="background-color: #ffffff"></td><td data-row="4" data-col="2" style="background-color: #ff0000"></td><td data-row="4" data-col="3" style="background-color: #ffffff"></td><td data-row="4" data-col="4" style="background-color: #ffffff"></td></tr>
+        </tbody></table>
+      </div>
+      <div id="storage-controls">
+        <button id="save-btn" type="button">Save drawing</button>
+        <button id="load-btn" type="button">Load drawing</button>
+      </div>
+      <p id="status" role="status">Drawing saved.</p>
+    </section>
+
+    <section id="color-section" aria-labelledby="color-heading">
+      <h2 id="color-heading">Color</h2>
+      <div id="current-color-display" aria-hidden="true"></div>
+      <label for="color-picker">Choose a color</label>
+      <input id="color-picker" type="color" value="#ff0000">
+    </section>
+
+    <section id="timer-section" aria-labelledby="timer-heading">
+      <h2 id="timer-heading">Drawing time</h2>
+      <output id="timer-display" role="timer">01:23</output>
+      <div id="timer-controls">
+        <button id="timer-start" type="button">Start</button>
+        <button id="timer-pause" type="button">Pause</button>
+        <button id="timer-reset" type="button">Reset</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
