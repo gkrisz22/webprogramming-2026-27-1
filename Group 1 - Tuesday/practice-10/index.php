@@ -1,0 +1,119 @@
+<?php 
+$todos = [
+    ["title" => "Buy milk", "done" => true],
+    ["title" => "Learn PHP arrays", "done" => false],
+    ["title" => "Water the plants", "done" => true],
+    ["title" => "Clean the room", "done" => true],
+    ["title" => "Read chapter 3", "done" => false],
+];
+
+
+$title = "";
+$done = false;
+$errors = []; // $errors["title"] = "Title is empty";
+// Handle POST request (add a todo)
+if($_SERVER["REQUEST_METHOD"] === "POST") {
+    // $_POST
+    echo "<pre>";
+    print_r($_POST);
+    echo "</pre>";
+
+    $title = trim($_POST["title"] ?? "");
+    $done = isset($_POST["done"]) ? true : false;
+
+    if($title === "") {
+        $errors["title"] = "Title is empty";
+    }
+    else if(strlen($title) > 30) {
+        $errors["title"] = "You can enter up to 30 characters max.";
+    }
+
+    if(count($errors) === 0) {
+        $todos[] = ["title" => $title, "done" => $done];
+    }
+}
+
+
+// How many todos are there
+echo "You have " . count($todos) . " todos!<br>";
+
+$doneCount = 0;
+foreach($todos as $item) {
+    echo $item["title"] . "<br>";
+    if($item["done"])
+        $doneCount++;
+}
+
+
+$show = $_GET["show"] ?? "all";
+$q = trim($_GET["q"] ?? "");
+
+$visible = [];
+foreach($todos as $todo) {
+    if($show === "done" && !$todo["done"]) continue;
+    if($show === "open" && $todo["done"]) continue;
+    if(!str_contains(strtolower($todo["title"]), strtolower($q))) continue;
+
+    $visible[] = $todo;
+}
+
+?>
+
+<?= $todos[0]["title"]  ?>
+<?php echo $todos[0]["title"]  ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Todos</h1>
+
+    <p>
+        <a href="?show=all" <?= $show === "all" ? 'style="font-weight: bold"' : '' ?> >All</a>
+        <a href="?show=open" <?= $show === "open" ? 'style="font-weight: bold"' : '' ?>>Open</a>
+        <a href="?show=done" <?= $show === "done" ? 'style="font-weight: bold"' : '' ?>>Done</a>
+    </p>
+
+    <form method="get">
+        <input type="hidden" name="show" value="<?= $show ?>">
+        <input name="q" value="<?= $q ?>">
+        <button type="submit">Search</button>
+    </form>
+    
+
+    <?php if(count($todos) === 0): ?>
+        <p>Nothing to do</p>
+    <?php else: ?>
+        <p><?= $doneCount ?> of <?= count($todos) ?> done</p>
+        <ul>
+            <!--
+            <li><s>Buy milk</s></li>
+            <li>Learn PHP arrays</li>
+            -->
+            <?php foreach($visible as $todo): ?>
+                <?php if($todo["done"]): ?>
+                    <li><s><?= $todo["title"]  ?></s></li>
+                <?php else: ?>
+                    <li><?= $todo["title"]  ?></li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+
+    <h2>Add a todo</h2>
+    <form method="post">
+        <input name="title" value="<?= $title ?>">
+        <?= $errors["title"] ?? "" ?>
+        <label>
+            <input name="done" type="checkbox" <?= $done ? "checked" : "" ?> > <!-- <input name="done" type="checkbox" checked> -->
+            already done
+        </label>
+        <button>Add</button>
+    </form>
+</body>
+</html>
